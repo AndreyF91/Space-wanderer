@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Space-wanderer/static/css/main.41b55e44.css",
+    "main.js": "/Space-wanderer/static/js/main.378842ee.js",
+    "static/media/big-star.png": "/Space-wanderer/static/media/big-star.4b7b73d4bdebb9102f87.png",
+    "static/media/radar.png": "/Space-wanderer/static/media/radar.77433c53c76d9f8412d0.png",
+    "index.html": "/Space-wanderer/index.html",
+    "main.41b55e44.css.map": "/Space-wanderer/static/css/main.41b55e44.css.map",
+    "main.378842ee.js.map": "/Space-wanderer/static/js/main.378842ee.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.41b55e44.css",
+    "static/js/main.378842ee.js"
+  ]
+}
