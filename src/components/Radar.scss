@@ -1,0 +1,27 @@
+.radar {
+    position: absolute;
+    z-index: 5;
+    &__wave {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 9999px;
+        background-color: rgb(85, 56, 252);
+        opacity: 0;
+        z-index: 1000;
+        pointer-events: none;
+        animation: sonarWave 1.5s linear infinite;
+    }
+}
+
+@keyframes sonarWave {
+    from {
+        opacity: 1;
+    }
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,14 @@
+.spaceship {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 1px solid transparent;
+    transition: 5s ease-in-out;
+    z-index: 15;
+    pointer-events: none;
+
+    &__img {
+        float: left;
+        width: 100%;
+    }
+}
