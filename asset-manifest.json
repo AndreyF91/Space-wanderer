@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/Space-wanderer/static/css/main.9b84059c.css",
-    "main.js": "/Space-wanderer/static/js/main.7d7a282d.js",
+    "main.css": "/Space-wanderer/static/css/main.f8ab712a.css",
+    "main.js": "/Space-wanderer/static/js/main.5315d137.js",
+    "static/media/warp-sound.mp3": "/Space-wanderer/static/media/warp-sound.004c103add66ce80fa2f.mp3",
     "static/media/stars.png": "/Space-wanderer/static/media/stars.90c266f7d69f1ffb6137.png",
     "static/media/big-star.png": "/Space-wanderer/static/media/big-star.4b7b73d4bdebb9102f87.png",
+    "static/media/radar-sound.mp3": "/Space-wanderer/static/media/radar-sound.3c83e62be2ccf9e9acf2.mp3",
     "static/media/radar.png": "/Space-wanderer/static/media/radar.77433c53c76d9f8412d0.png",
     "index.html": "/Space-wanderer/index.html",
-    "main.9b84059c.css.map": "/Space-wanderer/static/css/main.9b84059c.css.map",
-    "main.7d7a282d.js.map": "/Space-wanderer/static/js/main.7d7a282d.js.map"
+    "main.f8ab712a.css.map": "/Space-wanderer/static/css/main.f8ab712a.css.map",
+    "main.5315d137.js.map": "/Space-wanderer/static/js/main.5315d137.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b84059c.css",
-    "static/js/main.7d7a282d.js"
+    "static/css/main.f8ab712a.css",
+    "static/js/main.5315d137.js"
   ]
 }
