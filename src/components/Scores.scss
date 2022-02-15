@@ -1,0 +1,17 @@
+.scores {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+    border: 1px solid #fff;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+        font-weight: bold;
+        font-size: 70px;
+        color: #fff;
+    }
+}
