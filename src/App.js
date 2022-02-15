@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Goals from "./components/Goals";
-import Radar from "./components/Radar";
 import Ship from "./components/Ship";
 import SpaceSky from "./components/SpaceSky";
+import TitleScreen from "./components/TitleScreen";
+import ControlPanel from "./components/ControlPanel";
+import Scores from "./components/Scores";
 // import nebula from "./assets/nebula.png";
 import star from "./assets/big-star.png";
-import radarIcon from "./assets/radar.png";
-import warpIcon from "./assets/portal.png";
-
-
 
 function App() {
   // Координаты клика мыши
@@ -25,35 +23,26 @@ function App() {
   });
 
   // Отображение координат
-  console.log("Координаты цели: ", coords.x, ":", coords.y);
-  // console.log("Координаты корабля: ", shipCoords);
+  // console.log("Координаты цели: ", coords.x, ":", coords.y);
+  console.log("Координаты корабля: ", shipCoords);
 
+  //Радар
   const [isRadarOn, toggleRadarStatus] = useState(false);
-
-  // Статус движения корабля
-  const [isShipMoving, toggleShip] = useState(false);
   // Массив с целями задания
   const [goals, setGoals] = useState([]);
+
+  // Запуск начального экрана
+  const [titleStatus, setTitle] = useState(false);
 
   // Определяем координаты клика мыши + изменение статуса движения
   const onClickMouse = (e) => {
     if (e.nativeEvent.offsetX > 0 && e.nativeEvent.offsetY > 0) {
-      toggleShip(true);
       setCoords({
         x: e.nativeEvent.offsetX,
         y: e.nativeEvent.offsetY,
       });
-      setTimeout(() => {
-        toggleShip(false);
-      }, 5500);
     }
   };
-
-  // const toggleRadar = (e) => {
-  //   toggleRadarStatus(!isRadarOn);
-  //   e.nativeEvent.stopImmediatePropagation();
-  // };
-
   // Функция нахождения случайного числа в обозначенном диапазоне
   function getRandomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -96,39 +85,42 @@ function App() {
     }
   }, [shipCoords]);
 
-  return (
-    <div className="App">
-      <div className="space__test" onClick={(e) => onClickMouse(e)}>
-        <SpaceSky />
-        {isRadarOn ? <Radar shipCoords={shipCoords} /> : null}
-        <Ship
-          isRadarOn={isRadarOn}
-          coords={coords}
-          shipCoords={shipCoords}
-          isShipMoving={isShipMoving}
-          setShipCoords={setShipCoords}
-        />
-        {goals.map((i) => {
-          return (
-            <Goals
-              key={Math.random()}
-              name={i.item}
-              x={i.x}
-              y={i.y}
-              size={i.size}
-              isDetected={i.isDetected}
-            />
-          );
-        })}
-      </div>
-      <div className="control__panel">
-        <div className="control__panel--btns">
-          <img className="radar" src={radarIcon} alt="" onClick={(e) => toggleRadarStatus(!isRadarOn)} />
-          <img className="warp" src={warpIcon} alt="" />
+  if (!titleStatus) {
+    return <TitleScreen setTitle={setTitle} />;
+  } else {
+    return (
+      <div className="App">
+        <div className="space__test" onClick={(e) => onClickMouse(e)}>
+          <SpaceSky />
+
+          <Ship
+            isRadarOn={isRadarOn}
+            coords={coords}
+            shipCoords={shipCoords}
+            setShipCoords={setShipCoords}
+          />
+          {goals.map((i) => {
+            return (
+              <Goals
+                key={Math.random()}
+                name={i.item}
+                x={i.x}
+                y={i.y}
+                size={i.size}
+                isDetected={i.isDetected}
+              />
+            );
+          })}
         </div>
+        <Scores goals={goals} />
+        <ControlPanel
+          toggleRadarStatus={toggleRadarStatus}
+          isRadarOn={isRadarOn}
+          getRandomObj={getRandomObj}
+        />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
