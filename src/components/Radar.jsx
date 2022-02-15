@@ -1,14 +1,9 @@
 import React from "react";
 import "./Radar.scss";
 
-const Radar = ({ shipCoords }) => {
-  const radarStyle = {
-    left: shipCoords.x - 20,
-    top: shipCoords.y - 20,
-  };
-
+const Radar = ({}) => {
   return (
-    <div className="radar" style={radarStyle}>
+    <div className="radar">
       <div className="radar__wave"></div>
     </div>
   );
