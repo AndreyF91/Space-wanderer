@@ -1,25 +1,53 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ship from "../assets/ship.png";
+import Radar from "./Radar";
 import "./Ship.scss";
 
-const Ship = ({ coords, shipCoords, isShipMoving, setShipCoords }) => {
+const Ship = ({ coords, shipCoords, setShipCoords, isRadarOn }) => {
+  const [isShipMoving, toggleShip] = useState(false);
+
   // Привязка к кораблю
   const ref = useRef();
 
   // Определяем координаты корабля с обновлением раз в n-мс
+  function getShipCoords(timer) {
+    const update = setInterval(() => {
+      const parent = ref.current.parentNode.getBoundingClientRect();
+      const elem = ref.current.getBoundingClientRect();
+      setShipCoords({
+        x: elem.left - parent.left,
+        y: elem.top - parent.top,
+        width: elem.width,
+        height: elem.height,
+      });
+    }, 80);
+    setTimeout(() => {
+      clearInterval(update);
+    }, timer);
+  }
+
   useEffect(() => {
+
     if (isShipMoving) {
-      setInterval(() => {
-        const parent = ref.current.parentNode.getBoundingClientRect();
-        const elem = ref.current.getBoundingClientRect();
-        setShipCoords({
-          x: elem.left - parent.left,
-          y: elem.top - parent.top,
-          width: elem.width,
-          height: elem.height,
-        });
-      }, 40);
+      getShipCoords(5100);
     }
+
+    const refEl = ref.current;
+    refEl.addEventListener("transitionstart", () => {
+      toggleShip(true);
+    });
+    refEl.addEventListener("transitionend", () => {
+      toggleShip(false);
+    });
+
+    return () => {
+      refEl.removeEventListener("transitionstart", () => {
+        toggleShip(false);
+      });
+      refEl.addEventListener("transitionend", () => {
+        toggleShip(false);
+      });
+    };
   }, [isShipMoving]);
 
   // Перемещение корабля на координаты
@@ -46,6 +74,7 @@ const Ship = ({ coords, shipCoords, isShipMoving, setShipCoords }) => {
 
   return (
     <div className="spaceship" ref={ref} style={shipMove}>
+      {isRadarOn ? <Radar /> : null}
       <img className="spaceship__img" src={ship} style={shipRotate} alt="" />
     </div>
   );
